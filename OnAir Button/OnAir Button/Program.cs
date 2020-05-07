@@ -16,7 +16,9 @@ namespace OnAir_Button
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Form1 f1 = new Form1();
+            f1.Text = "On-Air Button Desktop Client";
+            Application.Run(f1);
         }
     }
 }

@@ -1,0 +1,38 @@
+int led = D0;
+bool on = false;
+int status = 0;
+
+void setup() {
+
+    pinMode(led, OUTPUT);
+    Particle.function("Toggle", toggle);
+    Particle.function("Status", requestStatus);
+    //Particle.variable("Status", status);
+
+}
+
+int toggle(String args) {
+    
+    if(on) {
+        
+        digitalWrite(led, LOW);
+        on = false;
+        status = 0;
+        
+    } else {
+        
+        digitalWrite(led, HIGH);
+        on = true;
+        status = 1;
+        
+    }
+    return 0;
+}
+
+int requestStatus(String args) {
+    
+    return status;
+    
+}
+
+void loop() {}
