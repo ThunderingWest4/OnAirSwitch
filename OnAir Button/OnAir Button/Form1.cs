@@ -14,6 +14,7 @@ namespace OnAir_Button
     public partial class Form1 : Form
     {   
         private static readonly HttpClient client = new HttpClient();
+        private static string token = System.IO.File.ReadAllText(@"");
         private static Dictionary<string, string> arg = new Dictionary<string, string>
         {
             {"args", "go" },
@@ -60,8 +61,17 @@ namespace OnAir_Button
             }
             else
             {
-                throw new Exception("something wack with the thing" + responseString);
+
+                string[] split = responseString.Split(':');
+                if(split[split.Length-1].Substring(1, 9) == "Timed out") { stat = "Lost Connection. Is the Board on?";  }
+                else { throw new Exception(responseString + split[split.Length - 1].Substring(1, 9)); }
+
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            setup();
         }
     }
 }
