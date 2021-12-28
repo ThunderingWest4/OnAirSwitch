@@ -14,14 +14,15 @@ namespace OnAir_Button
     public partial class Form1 : Form
     {   
         private static readonly HttpClient client = new HttpClient();
-        private static string token = System.IO.File.ReadAllText(@"");
+        private static string boardID = System.IO.File.ReadAllText(@"S:\Coding\OnAirSwitch\OnAir Button\OnAir Button\secretID.txt");
+        private static string token = System.IO.File.ReadAllText(@"S:\Coding\OnAirSwitch\OnAir Button\OnAir Button\secretToken.txt");
         private static Dictionary<string, string> arg = new Dictionary<string, string>
         {
             {"args", "go" },
-            {"access_token", "90f13806556687c42a0b9742f0fab56356d909db" }
+            {"access_token", token }
 
         };
-        private string url = "https://api.particle.io/v1/devices/23003d001847343438323536/";
+        private string url = "https://api.particle.io/v1/devices/"+boardID+"/";
         private string stat = "";
 
         public Form1()
